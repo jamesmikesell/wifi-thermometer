@@ -139,9 +139,15 @@ void loop()
     humidity = event.relative_humidity;
   }
 
-  sendData(temp, humidity); //This function uploads data to Google Sheets
-                            // Delay between measurements.
+  if (!isnan(event.temperature) && !isnan(event.relative_humidity))
+  {
+    sendData(temp, humidity);
   delay(delayMS);
+}
+  else
+  {
+    delay(2000);
+  }
 }
 
 void sendData(float temp, float humidity)
