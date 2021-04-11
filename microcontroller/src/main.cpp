@@ -8,8 +8,9 @@
 String readString;
 const char *ssid = "";
 const char *password = "";
-uint32_t delayMS = 60 * 60 * 1000;
 
+
+uint32_t delayMS = 60 * 60 * 1000;
 const char *host = "script.google.com";
 const int httpsPort = 443;
 
