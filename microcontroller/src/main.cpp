@@ -38,6 +38,7 @@ const char *fingerprint = "46 B2 C3 44 9C 59 09 8B 01 B6 F8 BD 4C FB 00 74 91 2F
 // See guide for details on sensor wiring and usage:
 //   https://learn.adafruit.com/dht/overview
 
+#define LED 2
 DHT_Unified dht(DHTPIN, DHTTYPE);
 
 void sendData(float temp, float humidity);
@@ -49,6 +50,8 @@ void setup()
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
 
+  pinMode(LED, OUTPUT);
+  digitalWrite(LED, LOW);
   while (WiFi.status() != WL_CONNECTED)
   {
     delay(500);
