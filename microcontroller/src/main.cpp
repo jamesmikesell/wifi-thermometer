@@ -111,6 +111,8 @@ void loop()
   // Get temperature event and print its value.
   sensors_event_t event;
   dht.temperature().getEvent(&event);
+  delay(2000);
+  dht.temperature().getEvent(&event);
   if (isnan(event.temperature))
   {
     Serial.println(F("Error reading temperature!"));
