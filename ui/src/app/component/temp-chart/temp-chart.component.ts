@@ -10,67 +10,14 @@ import { TempRecord } from 'src/app/model/temp-record';
 })
 export class TempChartComponent implements OnInit {
 
-
-  public lineChartData: ChartDataSets[] = [
-    {
-      data: [],
-      label: 'Temp (°F)',
-      borderWidth: 1.5,
-    },
-  ];
-
-
   @Input()
   set temperatureData(value: TempRecord[]) {
-    this.lineChartData[0].data = [];
-
-    if (value) {
-      this.lineChartData[0].data = value.map<ChartPoint>(x => ({
-        t: x.date,
-        y: x.tempF
-      }));
-    }
+    this.changeData(value);
   }
 
-
-
-
-  lineChartOptions: ChartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    legend: {
-      display: false
-    },
-    elements: {
-      point: {
-        radius: 1.5
-      }
-    },
-    scales: {
-      yAxes: [{}],
-      xAxes: [{
-        type: 'time',
-        time: {
-          minUnit: 'day'
-        }
-      }]
-    }
-  };
-
-  lineChartColors: Color[] = [
-    {
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    }
-  ];
-
-
-
-
+  lineChartData: ChartDataSets[];
+  lineChartOptions: ChartOptions;
+  lineChartColors: Color[];
 
 
   constructor(themeService: ThemeService) {
@@ -90,9 +37,71 @@ export class TempChartComponent implements OnInit {
       }
     };
     themeService.setColorschemesOptions(overrides);
+
+    this.configureLineColors();
+    this.configureOptions();
+    this.configureDataSets();
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+
+  private configureDataSets() {
+    this.lineChartData = [
+      {
+        data: [],
+        label: 'Temp (°F)',
+        borderWidth: 1.5,
+      },
+    ];
+  }
+
+  private changeData(value: TempRecord[]) {
+    this.lineChartData[0].data = [];
+
+    if (value) {
+      this.lineChartData[0].data = value.map<ChartPoint>(x => ({
+        t: x.date,
+        y: x.tempF
+      }));
+    }
+  }
+
+  private configureOptions() {
+    this.lineChartOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      legend: {
+        display: false
+      },
+      elements: {
+        point: {
+          radius: 1.5
+        }
+      },
+      scales: {
+        yAxes: [{}],
+        xAxes: [{
+          type: 'time',
+          time: {
+            minUnit: 'day'
+          }
+        }]
+      }
+    };
+  }
+
+  private configureLineColors(): void {
+    this.lineChartColors = [
+      {
+        backgroundColor: 'rgba(148,159,177,0.2)',
+        borderColor: 'rgba(148,159,177,1)',
+        pointBackgroundColor: 'rgba(148,159,177,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+      }
+    ];
   }
 
 }
