@@ -5,13 +5,8 @@
     <div *ngIf="!currentRecord" class="temp-container center">
       <app-loading-spinner></app-loading-spinner>
     </div>
-    <div *ngIf="currentRecord" class="temp-container">
-      <div class="temp center">{{currentRecord.tempF.toFixed(1)}} °F</div>
-      <div class="center as-of">as of {{currentRecord.date | timeago}} on</div>
-      <div class="center">
-        {{currentRecord.date | date:"EEEE, MMMM d, y"}}
-        at {{currentRecord.date | date:"h:mm a"}}
-      </div>
+    <div *ngIf="currentRecord" class="temp-container center">
+      <app-current-temp [temperature]="currentRecord"></app-current-temp>
     </div>
 
 
