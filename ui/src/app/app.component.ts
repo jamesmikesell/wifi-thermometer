@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
 
   AppVersion = AppVersion;
   currentRecord: TempRecord;
-  private tempRecords: TempRecord[];
+  tempRecords: TempRecord[];
 
   constructor(private dataService: DataService) { }
 
