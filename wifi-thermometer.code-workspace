@@ -7,6 +7,9 @@
 	"settings": {
 		"eslint.workingDirectories": [
 			"ui"
+		],
+		"cSpell.words": [
+			"Timeago"
 		]
 	}
 }
