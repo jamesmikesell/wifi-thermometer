@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ChartDataSets, ChartOptions, ChartPoint, ChartType } from 'chart.js';
-import { Color } from 'ng2-charts';
+import { ChartDataSets, ChartOptions, ChartPoint } from 'chart.js';
+import { Color, ThemeService } from 'ng2-charts';
 import { TempRecord } from 'src/app/model/temp-record';
 
 @Component({
@@ -12,7 +12,11 @@ export class TempChartComponent implements OnInit {
 
 
   public lineChartData: ChartDataSets[] = [
-    { data: [], label: 'Temperature (°F)', borderWidth: 1.5 },
+    {
+      data: [],
+      label: 'Temp (°F)',
+      borderWidth: 1.5,
+    },
   ];
 
 
@@ -31,7 +35,7 @@ export class TempChartComponent implements OnInit {
 
 
 
-  public lineChartOptions: ChartOptions = {
+  lineChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     legend: {
@@ -43,6 +47,7 @@ export class TempChartComponent implements OnInit {
       }
     },
     scales: {
+      yAxes: [{}],
       xAxes: [{
         type: 'time',
         time: {
@@ -51,20 +56,41 @@ export class TempChartComponent implements OnInit {
       }]
     }
   };
-  public lineChartColors: Color[] = [
+
+  lineChartColors: Color[] = [
     {
-      borderColor: 'black',
-      backgroundColor: 'rgba(255,0,0,0.3)',
-    },
+      backgroundColor: 'rgba(148,159,177,0.2)',
+      borderColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    }
   ];
-  public lineChartLegend = true;
-  public lineChartType: ChartType = 'line';
 
 
 
 
 
-  constructor() { }
+
+  constructor(themeService: ThemeService) {
+    let overrides: ChartOptions = {
+      legend: {
+        labels: { fontColor: 'white' }
+      },
+      scales: {
+        xAxes: [{
+          ticks: { fontColor: 'white' },
+          gridLines: { color: 'rgba(255,255,255,0.1)' }
+        }],
+        yAxes: [{
+          ticks: { fontColor: 'white' },
+          gridLines: { color: 'rgba(255,255,255,0.1)' }
+        }]
+      }
+    };
+    themeService.setColorschemesOptions(overrides);
+  }
 
   ngOnInit(): void {
   }

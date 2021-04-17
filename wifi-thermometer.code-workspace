@@ -9,7 +9,9 @@
 			"ui"
 		],
 		"cSpell.words": [
-			"Timeago"
+			"Timeago",
+			"chartjs",
+			"colorschemes"
 		]
 	}
 }
