@@ -74,17 +74,17 @@
   background-position: center;
   background-size: cover;
 
-  background-image: url("/assets/lake-1600.jpeg");
+  background-image: url("../assets/lake-1600.jpeg");
 }
 
 @media only screen and (max-width: 420px) {
   .lake:before {
-    background-image: url("/assets/lake-420.jpeg");
+    background-image: url("../assets/lake-420.jpeg");
   }
 }
 
 @media only screen and (max-width: 800px) {
   .lake:before {
-    background-image: url("/assets/lake-800.jpeg");
+    background-image: url("../assets/lake-800.jpeg");
   }
 }
