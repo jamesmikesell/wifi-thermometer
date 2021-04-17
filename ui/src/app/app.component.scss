@@ -1,0 +1,90 @@
+.page {
+  display: flex;
+  justify-content: center;
+}
+
+.items {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+.shadow-text {
+  color: #FFF;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.version {
+  margin-top: 50px;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  font-size: .8em;
+}
+
+.graph {
+  margin-top: 20px;
+}
+
+.on {
+  margin-bottom: -5px;
+}
+
+.lt {
+  font-size: 2em;
+}
+
+.water {
+  margin-bottom: 12px;
+}
+
+.lake {
+  position: relative;
+  width: 100vw;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+}
+
+
+.lake-content {
+  position: relative;
+}
+
+.lake:before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  background-repeat: no-repeat;
+  // background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+
+  background-image: url("../assets/lake-1600.jpeg");
+}
+
+@media only screen and (max-width: 420px) {
+  .lake:before {
+    background-image: url("../assets/lake-420.jpeg");
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .lake:before {
+    background-image: url("../assets/lake-800.jpeg");
+  }
+}

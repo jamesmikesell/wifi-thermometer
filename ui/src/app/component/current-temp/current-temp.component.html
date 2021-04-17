@@ -1,0 +1,8 @@
+<div *ngIf="temperature">
+  <div class="temp center">{{temperature.tempF.toFixed(1)}} °F</div>
+  <div class="center as-of">as of {{temperature.date | timeago}} on</div>
+  <div class="center">
+    {{temperature.date | date:"EEEE, MMMM d, y"}}
+    at {{temperature.date | date:"h:mm a"}}
+  </div>
+</div>

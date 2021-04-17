@@ -4,5 +4,14 @@
 			"path": "."
 		},
 	],
-	"settings": {}
+	"settings": {
+		"eslint.workingDirectories": [
+			"ui"
+		],
+		"cSpell.words": [
+			"Timeago",
+			"chartjs",
+			"colorschemes"
+		]
+	}
 }
