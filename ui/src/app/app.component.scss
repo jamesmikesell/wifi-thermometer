@@ -1,0 +1,39 @@
+.page {
+  display: flex;
+  justify-content: center;
+}
+
+.items {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+.temp-container {
+  margin-top: 86px;
+}
+
+.temp {
+  font-size: 4em;
+  margin-bottom: -11px;
+}
+
+.as-of {
+  font-size: .75em;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.version {
+  margin-top: 50px;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  font-size: .8em;
+}
