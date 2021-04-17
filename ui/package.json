@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "node ./build/build-pre.js && rm -rf ../docs && rm -rf dist && ng build --prod --base-href \"/wifi-thermometer/\" && mv dist/ui ../docs",
+    "build": "node ./build/build-pre.js && rm -rf ../docs && rm -rf dist && ng build --prod --deploy-url \"/wifi-thermometer/\" --base-href \"/wifi-thermometer/\" && mv dist/ui ../docs",
+    "deploy": "git checkout deploy && git rebase main && npm run build && git add -A && git commit --amend --no-edit && git push --force",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
