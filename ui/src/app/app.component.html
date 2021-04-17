@@ -4,19 +4,37 @@
 
     <div>
 
-      <div *ngIf="!currentRecord" class="temp-container center">
-        <app-loading-spinner></app-loading-spinner>
-      </div>
-      <div *ngIf="currentRecord" class="temp-container center">
-        <app-current-temp [temperature]="currentRecord"></app-current-temp>
+      <div class="lake">
+        <div class="lake-content">
+          <div class="temp-container">
+            <div class="shadow-text">
+              <div class="center on">
+                On
+              </div>
+              <div class="center lt">
+                Lake Tomahawk
+              </div>
+              <div class="center water">
+                The Water Is
+              </div>
+
+              <div *ngIf="!currentRecord" class="center">
+                <app-loading-spinner></app-loading-spinner>
+              </div>
+  
+              <app-current-temp *ngIf="currentRecord" [temperature]="currentRecord"></app-current-temp>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div *ngIf="currentRecord" class="temp-container center">
+      <div *ngIf="currentRecord" class="graph center">
         <app-temp-chart [temperatureData]="tempRecords"></app-temp-chart>
       </div>
 
       <div class="center">
-        <a href="https://docs.google.com/spreadsheets/d/19EeNlkYdQqr8EXXHsszUXIYHZpZFaH-P_BccS7rEWCs/edit#gid=0" target="_blank">
+        <a href="https://docs.google.com/spreadsheets/d/19EeNlkYdQqr8EXXHsszUXIYHZpZFaH-P_BccS7rEWCs/edit#gid=0"
+          target="_blank">
           Complete Data
         </a>
       </div>
