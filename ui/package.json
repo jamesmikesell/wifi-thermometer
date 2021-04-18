@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "node ./build/build-pre.js && rm -rf ../docs && rm -rf dist && ng build && mv dist/ui ../docs",
+    "build": "node ./build/build-pre.js && rm -rf ../docs && rm -rf dist && ng build --prod && mv dist/ui ../docs",
     "deploy": "git checkout deploy && git rebase main && npm run build && echo lttemp.com>../docs/CNAME && git add -A && git commit --amend --no-edit && git push --force",
     "test": "ng test",
     "lint": "ng lint",
