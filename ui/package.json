@@ -4,9 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "node ./build/build-pre.js && rm -rf ../docs && rm -rf dist && ng build --prod && mv dist/ui ../docs",
+    "ng-build": "ng build --prod --source-map --extra-webpack-config webpack.extra.js",
+    "build": "node ./build/build-pre.js && rm -rf ../docs && rm -rf dist && npm run ng-build && mv dist/ui ../docs",
     "deploy": "git checkout deploy && git rebase main && npm run build && echo lttemp.com>../docs/CNAME && git add -A && git commit --amend --no-edit && git push --force && git checkout main",
-    "analyze": "ng build --prod --source-map && npx source-map-explorer dist/ui/**/*.js",
+    "analyze": "npm run ng-build && npx source-map-explorer dist/ui/**/*.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -22,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~11.2.8",
     "chart.js": "^2.9.4",
     "ng2-charts": "^2.4.2",
+    "ngx-build-plus": "^11.0.0",
     "ngx-timeago": "^2.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
