@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "node ./build/build-pre.js && rm -rf ../docs && rm -rf dist && ng build --prod && mv dist/ui ../docs",
     "deploy": "git checkout deploy && git rebase main && npm run build && echo lttemp.com>../docs/CNAME && git add -A && git commit --amend --no-edit && git push --force",
+    "analyze": "ng build --prod --source-map && npx source-map-explorer dist/ui/**/*.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -51,6 +52,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "protractor": "~7.0.0",
+    "source-map-explorer": "^2.5.2",
     "ts-node": "~8.3.0",
     "typescript": "~4.1.5"
   }
