@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AppVersion } from './app-version';
 import { TempRecord } from './model/temp-record';
 import { DataService } from './service/data.service';
@@ -8,19 +9,31 @@ import { DataService } from './service/data.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
 
   AppVersion = AppVersion;
   currentRecord: TempRecord;
   tempRecords: TempRecord[];
 
+  private dataSubscription: Subscription;
+
   constructor(private dataService: DataService) { }
 
   async ngOnInit(): Promise<void> {
-    this.tempRecords = await this.dataService.getTemperatureData();
-    this.currentRecord = this.tempRecords[0];
+    this.dataSubscription = this.dataService.recordSubscription
+      .subscribe(items => {
+        this.tempRecords = items;
+        if (items && items.length)
+          this.currentRecord = this.tempRecords[0];
+        else
+          this.currentRecord = undefined;
+      });
   }
 
+  ngOnDestroy(): void {
+    if (this.dataSubscription || !this.dataSubscription.closed)
+      this.dataSubscription.unsubscribe();
+  }
 
 
 }

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { TempRecord } from '../model/temp-record';
 
 @Injectable({
@@ -7,11 +8,26 @@ import { TempRecord } from '../model/temp-record';
 })
 export class DataService {
 
-  constructor(private http: HttpClient) { }
+  readonly recordSubscription = new BehaviorSubject<TempRecord[]>(undefined);
 
-  async getTemperatureData() {
+  constructor(private http: HttpClient) {
+    this.getTemperatureData();
+
+    // Using setInterval as setTimeout has problems when used on inactive tabs
+    setInterval(() => {
+      let records = this.recordSubscription.value;
+      if (!records
+        || !records[0]
+        || Date.now() - records[0].date.getTime() > 60 * 60 * 1000) {
+        this.getTemperatureData();
+      }
+    }, 30 * 1000);
+  }
+
+  private async getTemperatureData(): Promise<void> {
     let sheetData = await this.getGoogleSheetData();
-    return this.convertSheetDataToRecord(sheetData);
+    let records = this.convertSheetDataToRecord(sheetData);
+    this.recordSubscription.next(records);
   }
 
   private getGoogleSheetData(): Promise<GoogleSheet> {
