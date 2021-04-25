@@ -1,5 +1,20 @@
 <div class="chart">
-  <canvas baseChart [datasets]="lineChartData" [options]="lineChartOptions" [colors]="lineChartColors"
-    [legend]="false" [chartType]="'line'">
+  <canvas baseChart [datasets]="lineChartData" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="false"
+    [chartType]="'line'">
   </canvas>
+</div>
+
+
+<div class="center">
+  <mat-form-field class="date-picker" appearance="fill">
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input [rangePicker]="picker" [min]="minDate" [max]="maxDate">
+      <input matStartDate readonly [ngModel]="startDate" (ngModelChange)="startDate = $event; dateChange()"
+        (click)="picker.open()" placeholder="Start date">
+      <input matEndDate readonly [ngModel]="endDate" (ngModelChange)="endDate = $event; dateChange()"
+        (click)="picker.open()" placeholder="End date">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
 </div>

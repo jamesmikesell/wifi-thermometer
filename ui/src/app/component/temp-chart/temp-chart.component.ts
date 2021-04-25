@@ -10,14 +10,21 @@ import { TempRecord } from 'src/app/model/temp-record';
 })
 export class TempChartComponent implements OnInit {
 
+  private allRecords: TempRecord[];
+
   @Input()
   set temperatureData(value: TempRecord[]) {
     this.changeData(value);
   }
 
+
   lineChartData: ChartDataSets[];
   lineChartOptions: ChartOptions;
   lineChartColors: Color[];
+  startDate: Date;
+  endDate: Date;
+  minDate: Date;
+  maxDate: Date;
 
 
   constructor(themeService: ThemeService) {
@@ -45,6 +52,24 @@ export class TempChartComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  dateChange(): void {
+    if (!this.startDate || !this.endDate)
+      return;
+
+    let adjustedEnd = new Date(this.endDate.getTime() + (24 * 60 * 60 * 1000));
+    adjustedEnd.setHours(0, 0, 0, 0);
+
+    let start = this.startDate.getTime();
+    let end = adjustedEnd.getTime();
+    this.lineChartData[0].data = this.allRecords
+      .filter(singleRecord =>
+        singleRecord.date.getTime() >= start
+        && singleRecord.date.getTime() < end)
+      .map<ChartPoint>(x => ({
+        t: x.date,
+        y: x.tempF
+      }));
+  }
 
   private configureDataSets(): void {
     this.lineChartData = [
@@ -58,12 +83,29 @@ export class TempChartComponent implements OnInit {
 
   private changeData(value: TempRecord[]): void {
     this.lineChartData[0].data = [];
+    this.allRecords = value;
 
     if (value) {
+      let min = Number.MAX_VALUE;
+      let max = Number.MIN_VALUE;
+      value.forEach(singleRecord => {
+        if (singleRecord.date.getTime() < min)
+          min = singleRecord.date.getTime();
+        if (singleRecord.date.getTime() > max)
+          max = singleRecord.date.getTime();
+      });
+
+      this.startDate = new Date(min);
+      this.minDate = new Date(min);
+      this.endDate = new Date(max);
+      this.maxDate = new Date(max);
+
       this.lineChartData[0].data = value.map<ChartPoint>(x => ({
         t: x.date,
         y: x.tempF
       }));
+
+      this.dateChange();
     }
   }
 
