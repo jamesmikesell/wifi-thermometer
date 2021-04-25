@@ -4,6 +4,12 @@
   justify-content: center;
 }
 
+html,
+body {
+  height: 100%;
+  line-height: unset !important;
+}
+
 body {
   margin: 0px;
   background-color: #333;
@@ -14,4 +20,12 @@ body {
 a {
   color: #337ab6;
   text-decoration: none;
+}
+
+.shadow-text {
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
 }

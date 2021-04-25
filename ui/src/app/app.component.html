@@ -5,26 +5,22 @@
     <div>
 
       <div class="lake">
-        <div class="lake-content">
-          <div class="temp-container">
-            <div class="shadow-text">
-              <div class="center on">
-                On
-              </div>
-              <div class="center lt">
-                Lake Tomahawk
-              </div>
-              <div class="center water">
-                The Water Is
-              </div>
-
-              <div *ngIf="!currentRecord" class="center">
-                <app-loading-spinner></app-loading-spinner>
-              </div>
-  
-              <app-current-temp *ngIf="currentRecord" [temperature]="currentRecord"></app-current-temp>
-            </div>
+        <div class="lake-content shadow-text">
+          <div class="center on">
+            On
           </div>
+          <div class="center lt">
+            Lake Tomahawk
+          </div>
+          <div class="center water">
+            The Water Is
+          </div>
+
+          <div *ngIf="!currentRecord" class="center">
+            <app-loading-spinner></app-loading-spinner>
+          </div>
+
+          <app-current-temp *ngIf="currentRecord" [temperature]="currentRecord"></app-current-temp>
         </div>
       </div>
 
