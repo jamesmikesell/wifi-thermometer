@@ -46,7 +46,7 @@ export class TempChartComponent implements OnInit {
   ngOnInit(): void { }
 
 
-  private configureDataSets() {
+  private configureDataSets(): void {
     this.lineChartData = [
       {
         data: [],
@@ -56,7 +56,7 @@ export class TempChartComponent implements OnInit {
     ];
   }
 
-  private changeData(value: TempRecord[]) {
+  private changeData(value: TempRecord[]): void {
     this.lineChartData[0].data = [];
 
     if (value) {
@@ -67,7 +67,7 @@ export class TempChartComponent implements OnInit {
     }
   }
 
-  private configureOptions() {
+  private configureOptions(): void {
     this.lineChartOptions = {
       responsive: true,
       maintainAspectRatio: false,
