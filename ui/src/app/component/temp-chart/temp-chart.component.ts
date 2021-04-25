@@ -100,10 +100,14 @@ export class TempChartComponent implements OnInit {
       this.endDate = new Date(max);
       this.maxDate = new Date(max);
 
-      this.lineChartData[0].data = value.map<ChartPoint>(x => ({
-        t: x.date,
-        y: x.tempF
-      }));
+
+      let daysPerPixel = 12 / 411;
+      let daysToShow = Math.round(daysPerPixel * window.innerWidth);
+      let maxToShow = Date.now() - (daysToShow * 24 * 60 * 60 * 1000);
+      if (maxToShow > this.minDate.getTime()) {
+        this.startDate = new Date(maxToShow);
+        this.startDate.setHours(0, 0, 0, 0);
+      }
 
       this.dateChange();
     }
