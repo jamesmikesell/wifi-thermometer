@@ -29,3 +29,10 @@ a {
     -1px 1px 0 #000,
     1px 1px 0 #000;
 }
+
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled),
+.mat-form-field.mat-focused .mat-form-field-label,
+.mat-datepicker-toggle-active {
+  color: #f069ff;
+}
