@@ -4,9 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "ng-build": "ng build --prod --source-map --extra-webpack-config webpack.extra.js",
-    "build": "node ./build/build-pre.js && rm -rf ../docs && rm -rf dist && npm run ng-build && mv dist/ui ../docs",
-    "deploy": "git checkout deploy && git rebase main && npm run build && echo lttemp.com>../docs/CNAME && git add -A && git commit --amend --no-edit && git push --force && git checkout main",
+    "build": "ng build --prod --source-map --extra-webpack-config webpack.extra.js",
     "analyze": "npm run ng-build && npx source-map-explorer dist/ui/**/*.js",
     "test": "ng test",
     "lint": "ng lint",

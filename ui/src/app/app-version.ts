@@ -1,1 +1,1 @@
-export class AppVersion { static readonly VERSION = "92"; }
+export class AppVersion { static readonly VERSION = "000000"; }
